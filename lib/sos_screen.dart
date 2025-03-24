@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'report_screen.dart';
 
 class SOSScreen extends StatefulWidget {
   const SOSScreen({super.key});
@@ -66,24 +67,40 @@ class _SOSScreenState extends State<SOSScreen> {
         backgroundColor: Colors.redAccent,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.warning_amber_rounded, size: 100, color: Colors.red),
-            const SizedBox(height: 20),
-            const Text("Emergency Assistance", style: TextStyle(fontSize: 24)),
-            const SizedBox(height: 10),
-            Text("Your Location:\n$_location", textAlign: TextAlign.center),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.warning_amber_rounded, size: 100, color: Colors.red),
+              const SizedBox(height: 20),
+              const Text("Emergency Assistance", style: TextStyle(fontSize: 24)),
+              const SizedBox(height: 10),
+              Text("Your Location:\n$_location", textAlign: TextAlign.center),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                ),
+                onPressed: _sendSOS,
+                child: const Text("SEND SOS", style: TextStyle(fontSize: 18)),
               ),
-              onPressed: _sendSOS,
-              child: const Text("SEND SOS", style: TextStyle(fontSize: 18)),
-            ),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey,
+                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ReportScreen()),
+                  );
+                },
+                child: const Text("REPORT ABUSE", style: TextStyle(fontSize: 18)),
+              ),
+            ],
+          ),
         ),
       ),
     );
