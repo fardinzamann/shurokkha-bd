@@ -33,6 +33,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   geolocator: ^10.1.0
   permission_handler: ^11.0.1
+  shared_preferences: ^2.2.2
+
 
 
 dev_dependencies:
@@ -87,3 +89,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+url_launcher: ^6.2.5
